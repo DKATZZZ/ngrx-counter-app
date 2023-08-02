@@ -9,8 +9,8 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./counter-output.component.scss']
 })
 export class CounterOutputComponent implements OnInit {
-//  counter:number;
- counter$:Observable<{counter:number}>;
+ counter:number;
+ //counter$:Observable<{counter:number}>;
 //  countersubscription:Subscription;
   constructor(private store:Store<{counter:counterstate}>){}
 
@@ -19,9 +19,16 @@ export class CounterOutputComponent implements OnInit {
     //   this.counter$ = this.store.select('counter');
     //   //this.counter=data.counter;
     // });
-    this.counter$ = this.store.select('counter');
+    //this.counter$ = this.store.select('counter');
 
     //this.counter$=this.store.select('counter');
+   
+    this.store.select('counter').subscribe((data) => {
+      console.log("channel title is called");
+      this.counter=data.counter;
+      
+    })
+
   }
   // ngOnDestroy(): void {
   //   if(this.countersubscription){
