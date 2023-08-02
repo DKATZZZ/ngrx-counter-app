@@ -1,6 +1,6 @@
 <p>custom-counter-input works!</p>
 <div>
-    <div>{{channeldata}}</div>
+    <div>{{(channelData$ | async)}}</div>
     <input type="text" [(ngModel)]="value" />
     <button class="btn btn-primary" (click)="onAdd()">Add To Counter</button>
 </div>
