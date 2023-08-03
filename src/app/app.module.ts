@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { PostlistComponent } from './posts/postlist/postlist.component';
+import { AppReducer } from 'src/store/app.state';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { PostlistComponent } from './posts/postlist/postlist.component';
   imports: [
     BrowserModule,
     FormsModule,
-    StoreModule.forRoot({counter:counterReducer}),
+    StoreModule.forRoot(AppReducer),
     AppRoutingModule
   ],
   providers: [],
