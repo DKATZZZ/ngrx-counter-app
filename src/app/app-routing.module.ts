@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CounterComponent } from './components/counter/counter.component';
 import { HomeComponent } from './home/home.component';
 import { PostlistComponent } from './posts/postlist/postlist.component';
+import { AddpostComponent } from './posts/addpost/addpost.component';
 
 const routes:Routes = [
   {
@@ -13,7 +14,8 @@ const routes:Routes = [
     path:'counter', component:CounterComponent
   },
   {
-    path:'posts', component:PostlistComponent
+    path:'posts', component:PostlistComponent,
+    children:[{path:'add',component:AddpostComponent}]
   }
 ]
 

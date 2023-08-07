@@ -1,0 +1,49 @@
+<p>addpost works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <h3>Add Posts</h3>
+
+        <hr />
+        <form [formGroup]="myform" (ngSubmit)="onAdd()">
+            <div class="mb-3">
+                <label>Title</label>
+                  <input class="form-control" formControlName="title" />
+                  <div class="" 
+                    *ngIf="myform.get('title').touched && 
+                      !myform.get('title').valid">
+
+                      <div *ngIf="myform.get('title').errors?.['required']">
+                          Title is required
+                      </div>
+                       
+                      <div *ngIf="myform.get('title').errors?.['minlength']">
+                         Title should be minimum 6 characters
+                    </div>
+
+                  </div>
+            </div>
+
+            <div class="mb-3">
+                <label>Description</label>
+                  <textarea class="form-control" formControlName="description"></textarea>
+                   <div *ngIf="myform.get('description').touched
+                        && !myform.get('description').valid">
+<!-- 
+                        <div *ngIf="myform.get('description').errors?.['required']">
+                            Description is required
+                        </div> -->
+
+                        <div>
+                           {{getErrorMessage('description')}}
+                        </div>
+                     
+                   </div>
+            </div>
+            
+            <div class="my-3">
+                <button type="submit">Add Post</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
