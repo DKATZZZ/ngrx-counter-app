@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Posts } from 'src/app/models/posts.model';
+import { addPost } from '../state/posts.action';
+import { AppState } from 'src/store/app.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-addpost',
@@ -9,7 +14,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class AddpostComponent implements OnInit{
 myform!:FormGroup;
 
-constructor(private fb:FormBuilder){}
+constructor(private fb:FormBuilder, private store:Store<AppState>){}
   ngOnInit(): void {
    this.myform = this.fb.group({
     title:new FormControl('',
@@ -28,6 +33,17 @@ constructor(private fb:FormBuilder){}
   }
 
   onAdd(){
+    if(this.myform.valid){
+      return;
+    }
+
+    const post:Posts = {
+      title:this.myform.value.title,
+      description:this.myform.value.description
+    };
+    
+     this.store.dispatch(addPost({post} ));
+     console.log(post);
     console.log(this.myform);
   }
   getErrorMessage(field: string): string {
