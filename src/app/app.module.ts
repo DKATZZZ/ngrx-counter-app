@@ -16,6 +16,7 @@ import { PostlistComponent } from './posts/postlist/postlist.component';
 import { AppReducer } from 'src/store/app.state';
 import { AddpostComponent } from './posts/addpost/addpost.component';
 import { EditpostComponent } from './posts/editpost/editpost.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,11 @@ import { EditpostComponent } from './posts/editpost/editpost.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(AppReducer),
-    AppRoutingModule
+    AppRoutingModule,
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

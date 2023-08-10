@@ -1,6 +1,7 @@
-import { addPost } from './posts.action';
+import { addPost, updatePost } from './posts.action';
 import { createReducer, on } from '@ngrx/store';
 import { initialstate } from './posts.state';
+import { state } from '@angular/animations';
 
 const _postsReducer = createReducer(
   initialstate,
@@ -12,6 +13,15 @@ const _postsReducer = createReducer(
     return {
       ...state,
       posts: [...state.posts, post],
+    };
+  }),
+  on(updatePost,(state,action) => {
+    const updatedposts = state.posts.map(post => {
+      return action.post.id ===post.id ? action.post:post;
+    });
+    return {
+      ...state,
+      posts:updatedposts,
     };
   })
 );

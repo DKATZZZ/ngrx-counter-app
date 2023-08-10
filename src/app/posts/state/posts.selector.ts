@@ -10,6 +10,6 @@ export const getposts = createSelector(getpostsstate,(state)=>{
     return state.posts;
 });
 
-export const getpostsById = (postId: string) => createSelector(getpostsstate,(state)=>{
-    return state.posts.find((post) => post.id === postId);
+export const getpostsById = createSelector(getpostsstate,(state,props)=>{
+    return state.posts.find((post) => post.id === props.id);
 });
