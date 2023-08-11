@@ -12,11 +12,11 @@
                     *ngIf="myform.get('title').touched && 
                       !myform.get('title').valid">
 
-                      <div *ngIf="myform.get('title').errors?.['required']">
+                      <div *ngIf="myform.get('title').errors['required']">
                           Title is required
                       </div>
                        
-                      <div *ngIf="myform.get('title').errors?.['minlength']">
+                      <div *ngIf="myform.get('title').errors['minlength']">
                          Title should be minimum 6 characters
                     </div>
 

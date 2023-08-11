@@ -16,16 +16,16 @@ myform!:FormGroup;
 
 constructor(private fb:FormBuilder, private store:Store<AppState>){}
   ngOnInit(): void {
-   this.myform = this.fb.group({
-    title:new FormControl('',
-    [Validators.required,
-      Validators.minLength(6)
-    
-    ]),
-    description:new FormControl(null,
-      [Validators.required,
-      Validators.minLength(10)])
-   });
+   this.myform = new FormGroup({
+     title: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      description: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(10),
+      ]),
+   })
   }
 
   get f(){
@@ -33,18 +33,17 @@ constructor(private fb:FormBuilder, private store:Store<AppState>){}
   }
 
   onAdd(){
-    if(this.myform.valid){
+    
+    if (!this.myform.valid) {
       return;
     }
 
-    const post:Posts = {
-      title:this.myform.value.title,
-      description:this.myform.value.description
+    const post: Posts = {
+      title: this.myform.value.title,
+      description: this.myform.value.description,
     };
-    
-     this.store.dispatch(addPost({post} ));
-     console.log(post);
-    console.log(this.myform);
+
+    this.store.dispatch(addPost({ post }));
   }
   getErrorMessage(field: string): string {
     let message:string;
