@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Posts } from 'src/app/models/posts.model';
 import { AppState } from 'src/store/app.state';
 import { getposts } from '../state/posts.selector';
+import { deletePost } from '../state/posts.action';
 
 @Component({
   selector: 'app-postlist',
@@ -20,4 +21,9 @@ posts$:Observable<Posts[]>;
     this.posts$= this.store.select(getposts);
   }
 
+  onDeletePost(id:string){
+    if(confirm('Are you sure you want to delete')){
+      this.store.dispatch(deletePost({id}));
+    }
+  }
 }

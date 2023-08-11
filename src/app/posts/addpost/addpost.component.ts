@@ -44,7 +44,10 @@ constructor(private fb:FormBuilder, private store:Store<AppState>){}
     };
 
     this.store.dispatch(addPost({ post }));
+    this.myform.reset();
+    
   }
+
   getErrorMessage(field: string): string {
     let message:string;
     const formField = this.myform.get('description');
