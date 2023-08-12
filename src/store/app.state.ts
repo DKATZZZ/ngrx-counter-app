@@ -1,5 +1,5 @@
-import { counterReducer } from "src/app/components/state/counter.reducer";
-import { counterstate } from "src/app/components/state/counter.state";
+import { counterReducer } from "src/app/components/counter-component/state/counter.reducer";
+import { counterstate } from "src/app/components/counter-component/state/counter.state";
 import { postsReducer } from "src/app/posts/state/posts.reducer";
 import { PostsState } from "src/app/posts/state/posts.state";
 
