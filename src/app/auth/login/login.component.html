@@ -1,0 +1,38 @@
+<p>login works!</p>
+<div class="row">
+    <div class="col-md-6 offset-col-md-6">
+        <h3>Login</h3>
+        <hr />
+
+        <form [formGroup]="loginform" (ngSubmit)="loginFormSubmit()">
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="email" class="form-control" formControlName="email" />
+                    <div class="error" 
+                    *ngIf="loginform.get('email').touched && 
+                      !loginform.get('email').valid">
+                      email is required
+                </div>
+                
+                </div>
+
+                <div class="mb-3">
+                    <label>Password</label>
+                    <input type="password" class="form-control"
+                      formControlName="password" />
+                       <div class="error" *ngIf="loginform.get('password').touched &&
+                          !loginform.get('password').valid">
+            
+                          Password is required
+                        </div>
+                       
+                    
+                        
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-primary" type="submit" [disabled]="!loginform.valid">Login</button>
+                </div>
+        </form>
+    </div>
+</div>
