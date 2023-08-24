@@ -12,12 +12,14 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { AppReducer } from 'src/store/app.state';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AuthEffects } from './auth/state/auth.effects';
+import { LoadingspinnerComponent } from './shared/loadingspinner/loadingspinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
+    LoadingspinnerComponent,
     
   ],
   imports: [
@@ -26,7 +28,7 @@ import { AuthEffects } from './auth/state/auth.effects';
     ReactiveFormsModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(AppReducer),
     AppRoutingModule,
     StoreRouterConnectingModule.forRoot()
   ],
