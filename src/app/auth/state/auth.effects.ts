@@ -21,6 +21,7 @@ export class AuthEffects{
         return this.authService.login(action.email, action.password).pipe(
           map((data:any) => {
             this.store.dispatch(setloadingspinner({status:false}));
+            this.store.dispatch(setErrorMessage({message:''}));
             const user = this.authService.formatUser(data);
             return login_success({user});
           }),
