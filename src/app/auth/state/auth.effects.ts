@@ -14,7 +14,7 @@ import { Router } from "@angular/router";
 export class AuthEffects{
     constructor(private actions$: Actions, private authService: AuthService, private store:Store<AppState>,private router:Router) {}
 
-   
+   //login auth action
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(loginstart),
