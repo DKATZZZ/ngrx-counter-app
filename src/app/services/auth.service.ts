@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Authresponsedata } from '../models/authresponsedata';
 import { User } from '../models/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,16 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  login(email:string,password:string){
-    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.FIRBASE_API_KEY}`,
+  login(email:string,password:string):Observable<Authresponsedata>{
+    return this.http.post<Authresponsedata>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.FIRBASE_API_KEY}`,
     {email,password,returnSecureToken: true})
+  }
+
+  signup(email:string,password:string) : Observable<Authresponsedata>{
+    return this.http.post<Authresponsedata>(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.FIRBASE_API_KEY}`,
+      {email,password,returnSecureToken:true}
+    )
   }
 
   formatUser(data:Authresponsedata){
