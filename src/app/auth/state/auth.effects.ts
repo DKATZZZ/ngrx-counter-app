@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AuthService } from "src/app/services/auth.service";
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 import { loginstart,login_success, signupSuccess, signupStart } from "./auth.action";
-import { User } from "src/app/models/user";
+import { User } from "src/app/models/user.model";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/store/app.state";
 import { setErrorMessage, setloadingspinner } from "src/store/shared/shared.actions";
