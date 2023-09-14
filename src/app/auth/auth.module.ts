@@ -9,7 +9,7 @@ import { AuthReducer } from './state/auth.reducer';
 import { AuthEffects } from './state/auth.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { SignupComponent } from './signup/signup.component';
-
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: '',
@@ -23,7 +23,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [LoginComponent, SignupComponent],
   imports: [
-    CommonModule,ReactiveFormsModule,
+    CommonModule,FormsModule,ReactiveFormsModule,
     EffectsModule.forFeature([AuthEffects]),
     StoreModule.forFeature(AUTH_STATE_NAME,AuthReducer),
     RouterModule.forChild(routes)
