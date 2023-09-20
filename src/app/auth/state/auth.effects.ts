@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AuthService } from "src/app/services/auth.service";
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
-import { loginstart,login_success, signupSuccess, signupStart,autologin } from "./auth.action";
+import { loginstart,login_success, signupSuccess, signupStart,autologin, autologout } from "./auth.action";
 import { User } from "src/app/models/user.model";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/store/app.state";
@@ -84,5 +84,18 @@ export class AuthEffects{
     );
   },
     {dispatch:false}
+  );
+
+  //use autologout
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(autologout),
+      map((action)=> {
+        this.authService.logout();
+        this.router.navigate(['auth']);
+      })
+    )
+  },
+  {dispatch:false}
   );
 }

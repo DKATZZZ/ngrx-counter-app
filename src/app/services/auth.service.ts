@@ -73,4 +73,12 @@ timeoutInterval:any;
     }
     return null;
   }
+
+  logout(){
+    localStorage.removeItem('userdata');
+    if(this.timeoutInterval){
+      clearTimeout(this.timeoutInterval);
+      this.timeoutInterval = null;
+    }
+  }
 }
