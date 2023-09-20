@@ -15,7 +15,7 @@ export const AUTO_LOGOUT = '[auth page] auto logout';
         );
     export const login_success= createAction(
         LOGIN_SUCCESS,
-        props<{user:User}>()
+        props<{user:User,redirect:boolean}>()
         );
     export const signupStart = createAction(
         SIGNUP_START,
@@ -24,7 +24,7 @@ export const AUTO_LOGOUT = '[auth page] auto logout';
 
     export const signupSuccess = createAction(
         SIGNUP_SUCCESS,
-        props<{user:User}>()
+        props<{user:User,redirect:boolean}>()
     );
 
     export const autologin = createAction(AUTO_LOGIN_ACTION);

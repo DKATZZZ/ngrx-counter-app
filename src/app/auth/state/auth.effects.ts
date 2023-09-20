@@ -24,7 +24,7 @@ export class AuthEffects{
             this.store.dispatch(setloadingspinner({status:false}));
             this.store.dispatch(setErrorMessage({message:''}));
             const user = this.authService.formatUser(data);
-            return login_success({user});
+            return login_success({user,redirect:true});
           }),
           catchError((errResp) => {
             this.store.dispatch(setloadingspinner({ status: false }));
@@ -44,7 +44,10 @@ export class AuthEffects{
      ofType(...[login_success,signupSuccess]),
      tap((action)=>{
        this.store.dispatch(setErrorMessage({message:''}));
-       this.router.navigate(['/'])
+       if(action.redirect){
+        this.router.navigate(['/']);
+       }
+      
      })
    );
   },
@@ -60,7 +63,7 @@ export class AuthEffects{
           map((data)=>{
             this.store.dispatch(setloadingspinner({status:false}));
             const user = this.authService.formatUser(data);
-            return signupSuccess({ user });
+            return signupSuccess({ user,redirect:true });
           }),
           catchError((errorResp)=>{
             this.store.dispatch(setloadingspinner({status:false}));
@@ -80,6 +83,7 @@ export class AuthEffects{
       ofType(autologin),
       map((action) => {
         const user = this.authService.getUserFromLocalStorage();
+        return of(login_success({ user, redirect: false }));
       })
     );
   },
