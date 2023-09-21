@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Posts } from 'src/app/models/posts.model';
 import { AppState } from 'src/store/app.state';
 import { getposts } from '../state/posts.selector';
-import { deletePost } from '../state/posts.action';
+import { deletePost, loadpost } from '../state/posts.action';
 
 @Component({
   selector: 'app-postlist',
@@ -19,6 +19,7 @@ posts$:Observable<Posts[]>;
   }
   ngOnInit(): void {
     this.posts$= this.store.select(getposts);
+    this.store.dispatch(loadpost());
   }
 
   onDeletePost(id:string){
