@@ -28,4 +28,16 @@ export class PostsService {
     post
     );
   }
+  updateposts(post:Posts){
+    const updatepost = {
+      [post.id] : {title:post.title,description:post.description},
+
+    };
+    return this.http.patch(`https://vue-completecourse.firebaseio.com/posts.json`,updatepost);
+  }
+  
+  deletePost(id:string){
+    return this.http.delete(`https://vue-completecourse.firebaseio.com/posts/${id}.json`,
+    );
+  }
 }
