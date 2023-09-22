@@ -22,4 +22,10 @@ export class PostsService {
         })
       );
   }
+
+  addposts(post:Posts):Observable<{name:string}>{
+    return this.http.post<{name:string}>(`https://vue-completecourse.firebaseio.com/posts.json`,
+    post
+    );
+  }
 }
