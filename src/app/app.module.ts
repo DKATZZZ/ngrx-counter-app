@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -13,6 +13,7 @@ import { AppReducer } from 'src/store/app.state';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AuthEffects } from './auth/state/auth.effects';
 import { LoadingspinnerComponent } from './shared/loadingspinner/loadingspinner.component';
+import { AuthtokenInterceptor } from './services/authtoken.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,13 @@ import { LoadingspinnerComponent } from './shared/loadingspinner/loadingspinner.
     AppRoutingModule,
     StoreRouterConnectingModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthtokenInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
