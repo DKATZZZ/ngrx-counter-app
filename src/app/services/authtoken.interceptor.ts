@@ -16,8 +16,9 @@ export class AuthtokenInterceptor implements HttpInterceptor {
   constructor(private store:Store<AppState>) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return this.store.select(gettoken).pipe(exhaustMap((token)=> {
-      take(1);
+    return this.store.select(gettoken).pipe(
+      take(1),
+      exhaustMap((token)=> {
       if(!token){
         return next.handle(request);
       }
