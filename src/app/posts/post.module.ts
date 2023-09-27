@@ -9,6 +9,7 @@ import {  StoreModule } from '@ngrx/store';
 import { postsReducer } from './state/posts.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PostEffects } from './state/posts.effects';
+import { POST_STATE_NAME } from './state/posts.selector';
 
 
 
@@ -32,7 +33,7 @@ const routes:Routes=[
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('posts',postsReducer),
+    StoreModule.forFeature(POST_STATE_NAME,postsReducer),
     EffectsModule.forFeature([PostEffects])
   ]
 })
