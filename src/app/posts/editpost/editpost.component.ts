@@ -25,7 +25,7 @@ export class EditpostComponent {
 
   ngOnInit(): void {
     this.createForm();
-    this.store.select(getpostsById).subscribe((post)=>{
+    this.postSubscription = this.store.select(getpostsById).subscribe((post)=>{
       if(post){
         this.post=post;
         this.postForm.patchValue({
